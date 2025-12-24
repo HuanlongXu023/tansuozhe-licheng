@@ -1,19 +1,19 @@
 /**
  ****************************************************************************************************
  * @file        main.c
- * @author      ÕıµãÔ­×ÓÍÅ¶Ó(ALIENTEK)
+ * @author      æ­£ç‚¹åŸå­å›¢é˜Ÿ(ALIENTEK)
  * @version     V1.0
  * @date        2021-10-23
- * @brief       IIC ÊµÑé
- * @license     Copyright (c) 2020-2032, ¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾
+ * @brief       IIC å®éªŒ
+ * @license     Copyright (c) 2020-2032, å¹¿å·å¸‚æ˜Ÿç¿¼ç”µå­ç§‘æŠ€æœ‰é™å…¬å¸
  ****************************************************************************************************
  * @attention
  *
- * ÊµÑéÆ½Ì¨:ÕıµãÔ­×Ó Ì½Ë÷Õß F407¿ª·¢°å
- * ÔÚÏßÊÓÆµ:www.yuanzige.com
- * ¼¼ÊõÂÛÌ³:www.openedv.com
- * ¹«Ë¾ÍøÖ·:www.alientek.com
- * ¹ºÂòµØÖ·:openedv.taobao.com
+ * å®éªŒå¹³å°:æ­£ç‚¹åŸå­ æ¢ç´¢è€… F407å¼€å‘æ¿
+ * åœ¨çº¿è§†é¢‘:www.yuanzige.com
+ * æŠ€æœ¯è®ºå›:www.openedv.com
+ * å…¬å¸ç½‘å€:www.alientek.com
+ * è´­ä¹°åœ°å€:openedv.taobao.com
  *
  ****************************************************************************************************
  */
@@ -28,10 +28,10 @@
 #include "./BSP/24CXX/24cxx.h"
 
 
-/* ÒªĞ´Èëµ½24c02µÄ×Ö·û´®Êı×é */
+/* è¦å†™å…¥åˆ°24c02çš„å­—ç¬¦ä¸²æ•°ç»„ */
 const uint8_t g_text_buf[] = {"STM32 IIC TEST"};
 
-#define TEXT_SIZE   sizeof(g_text_buf)          /* TEXT×Ö·û´®³¤¶È */
+#define TEXT_SIZE   sizeof(g_text_buf)          /* TEXTå­—ç¬¦ä¸²é•¿åº¦ */
 
 int main(void)
 {
@@ -39,28 +39,28 @@ int main(void)
     uint16_t i = 0;
     uint8_t datatemp[TEXT_SIZE];
 
-    HAL_Init();                                 /* ³õÊ¼»¯HAL¿â */
-    sys_stm32_clock_init(336, 8, 2, 7);         /* ÉèÖÃÊ±ÖÓ,168Mhz */
-    delay_init(168);                            /* ÑÓÊ±³õÊ¼»¯ */
-    usart_init(115200);                         /* ´®¿Ú³õÊ¼»¯Îª115200 */
-    usmart_dev.init(84);                        /* ³õÊ¼»¯USMART */
-    led_init();                                 /* ³õÊ¼»¯LED */
-    lcd_init();                                 /* ³õÊ¼»¯LCD */
-    key_init();                                 /* ³õÊ¼»¯°´¼ü */
-    at24cxx_init();                             /* ³õÊ¼»¯24CXX */
+    HAL_Init();                                 /* åˆå§‹åŒ–HALåº“ */
+    sys_stm32_clock_init(336, 8, 2, 7);         /* è®¾ç½®æ—¶é’Ÿ,168Mhz */
+    delay_init(168);                            /* å»¶æ—¶åˆå§‹åŒ– */
+    usart_init(115200);                         /* ä¸²å£åˆå§‹åŒ–ä¸º115200 */
+    usmart_dev.init(84);                        /* åˆå§‹åŒ–USMART */
+    led_init();                                 /* åˆå§‹åŒ–LED */
+    lcd_init();                                 /* åˆå§‹åŒ–LCD */
+    key_init();                                 /* åˆå§‹åŒ–æŒ‰é”® */
+    at24cxx_init();                             /* åˆå§‹åŒ–24CXX */
 
     lcd_show_string(30, 50, 200, 16, 16, "STM32", RED);
     lcd_show_string(30, 70, 200, 16, 16, "IIC TEST", RED);
     lcd_show_string(30, 90, 200, 16, 16, "ATOM@ALIENTEK", RED);
-    lcd_show_string(30, 110, 200, 16, 16, "KEY1:Write  KEY0:Read", RED);    /* ÏÔÊ¾ÌáÊ¾ĞÅÏ¢ */
+    lcd_show_string(30, 110, 200, 16, 16, "KEY1:Write  KEY0:Read", RED);    /* æ˜¾ç¤ºæç¤ºä¿¡æ¯ */
 
-    while (at24cxx_check()) /* ¼ì²â²»µ½24c02 */
+    while (at24cxx_check()) /* æ£€æµ‹ä¸åˆ°24c02 */
     {
         lcd_show_string(30, 130, 200, 16, 16, "24C02 Check Failed!", RED);
         delay_ms(500);
         lcd_show_string(30, 130, 200, 16, 16, "Please Check!      ", RED);
         delay_ms(500);
-        LED0_TOGGLE();      /* ºìµÆÉÁË¸ */
+        LED0_TOGGLE();      /* çº¢ç¯é—ªçƒ */
     }
 
     lcd_show_string(30, 130, 200, 16, 16, "24C02 Ready!", RED);
@@ -69,27 +69,27 @@ int main(void)
     {
         key = key_scan(0);
 
-        if (key == KEY1_PRES)   /* KEY1°´ÏÂ,Ğ´Èë24C02 */
+        if (key == KEY1_PRES)   /* KEY1æŒ‰ä¸‹,å†™å…¥24C02 */
         {
-            lcd_fill(0, 150, 239, 319, WHITE);  /* Çå³ı°ëÆÁ */
+            lcd_fill(0, 150, 239, 319, WHITE);  /* æ¸…é™¤åŠå± */
             lcd_show_string(30, 150, 200, 16, 16, "Start Write 24C02....", BLUE);
             at24cxx_write(0, (uint8_t *)g_text_buf, TEXT_SIZE);
-            lcd_show_string(30, 150, 200, 16, 16, "24C02 Write Finished!", BLUE);   /* ÌáÊ¾´«ËÍÍê³É */
+            lcd_show_string(30, 150, 200, 16, 16, "24C02 Write Finished!", BLUE);   /* æç¤ºä¼ é€å®Œæˆ */
         }
 
-        if (key == KEY0_PRES)   /* KEY0°´ÏÂ,¶ÁÈ¡×Ö·û´®²¢ÏÔÊ¾ */
+        if (key == KEY0_PRES)   /* KEY0æŒ‰ä¸‹,è¯»å–å­—ç¬¦ä¸²å¹¶æ˜¾ç¤º */
         {
             lcd_show_string(30, 150, 200, 16, 16, "Start Read 24C02.... ", BLUE);
             at24cxx_read(0, datatemp, TEXT_SIZE);
-            lcd_show_string(30, 150, 200, 16, 16, "The Data Readed Is:  ", BLUE);   /* ÌáÊ¾´«ËÍÍê³É */
-            lcd_show_string(30, 170, 200, 16, 16, (char *)datatemp, BLUE);          /* ÏÔÊ¾¶Áµ½µÄ×Ö·û´® */
+            lcd_show_string(30, 150, 200, 16, 16, "The Data Readed Is:  ", BLUE);   /* æç¤ºä¼ é€å®Œæˆ */
+            lcd_show_string(30, 170, 200, 16, 16, (char *)datatemp, BLUE);          /* æ˜¾ç¤ºè¯»åˆ°çš„å­—ç¬¦ä¸² */
         }
 
         i++;
 
         if (i == 20)
         {
-            LED0_TOGGLE();  /* ºìµÆÉÁË¸ */
+            LED0_TOGGLE();  /* çº¢ç¯é—ªçƒ */
             i = 0;
         }
 
