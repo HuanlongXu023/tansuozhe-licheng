@@ -5,8 +5,8 @@
 !.gitignore
 
 # 但不排除 a 文件夹
-!a/
-!a/**
+!exam24_IIC/
+!exam24_IIC/**
 
 
 
